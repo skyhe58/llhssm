@@ -27,7 +27,7 @@ public class AppointExecution {
     }
 
     //预约失败的构造器
-    public AppointExecution(int bookId, AppointStateEnum stateEnum) {
+    public AppointExecution(long bookId, AppointStateEnum stateEnum) {
         this.bookId = bookId;
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
