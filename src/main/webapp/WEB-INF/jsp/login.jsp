@@ -11,15 +11,16 @@
     <title>Title</title>
 </head>
 <body>
-    <%--<form action="${pageContext.request.contextPath}/use/login" method="get">--%>
-        <%--用户名：<input type="text" name="username"/><br/>--%>
-        <%--密码：<input type="password" name="password"/><br/>--%>
-        <%--<input type="submit" value="登录"/>--%>
-    <%--</form>--%>
-
-    <form action="${pageContext.request.contextPath}/book/list" method="get">
-        <input type="submit" value="查看"/>
+    <form action="${pageContext.request.contextPath}/user/login" method="get">
+        用户名：<input type="text" name="username"/><br/>
+        密码：<input type="password" name="password"/><br/>
+        <input type="submit" value="登录"/>
     </form>
-${list}
+
+    ${user.username}请重新登录
+
+    <%--<form action="${pageContext.request.contextPath}/book/list" method="get">--%>
+        <%--<input type="submit" value="查看"/>--%>
+    <%--</form>--%>
 </body>
 </html>
