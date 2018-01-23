@@ -32,8 +32,17 @@
     </bean>
 
     <!-- ViewController -->
+    <mvc:view-controller path="/login" view-name="login"/>
     <mvc:view-controller path="/user/showLogin" view-name="login"/>
     <mvc:view-controller path="/user/showSuccess" view-name="success"/>
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.soecode.lyf.web" />
+
+    <!-- Interceptor -->
+    <mvc:interceptors>
+         <mvc:interceptor>
+            <mvc:mapping path="/interceptor/*"/>
+            <bean class="com.soecode.lyf.interceptor.InterceptorLogin"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

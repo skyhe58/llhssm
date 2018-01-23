@@ -1,17 +1,14 @@
 package com.soecode.lyf.web;
 
-import com.soecode.lyf.entity.Book;
 import com.soecode.lyf.entity.User;
 import com.soecode.lyf.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -36,13 +33,14 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(password);
         List list = userService.selectByUsernameAndPassword(user);
+        session.setAttribute("username", user.getUsername());
         if(!list.isEmpty()){
             System.out.println("登录成功");
-            session.setAttribute("user", user);
             return "redirect:/user/showSuccess";
         }
         System.out.println("重新登录");
         return "forward:/user/showLogin";
+//        return "login";
     }
 
 

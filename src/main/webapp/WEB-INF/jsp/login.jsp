@@ -17,7 +17,7 @@
         <input type="submit" value="登录"/>
     </form>
 
-    ${user.username}请重新登录
+    ${username}请重新登录
 
     <%--<form action="${pageContext.request.contextPath}/book/list" method="get">--%>
         <%--<input type="submit" value="查看"/>--%>
