@@ -1,4 +1,4 @@
-package com.soecode.lyf.aop3;
+package com.soecode.lyf.aop.aop3;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

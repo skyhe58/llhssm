@@ -4,15 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Spring AOP 1.x-->
-    <bean id="someServiceTarget" class="com.soecode.lyf.aop3.SomeServiceImpl"></bean>
+    <bean id="someServiceTarget" class="com.soecode.lyf.aop.aop3.SomeServiceImpl"></bean>
 
-    <bean id="logAdvice" class="com.soecode.lyf.aop3.LogAdvice"></bean>
-    <bean id="welcomeAdvice" class="com.soecode.lyf.aop3.WelcomeAdvice"></bean>
-    <bean id="timeAdvice" class="com.soecode.lyf.aop3.TimeAdvice"></bean>
+    <bean id="logAdvice" class="com.soecode.lyf.aop.aop3.LogAdvice"></bean>
+    <bean id="welcomeAdvice" class="com.soecode.lyf.aop.aop3.WelcomeAdvice"></bean>
+    <bean id="timeAdvice" class="com.soecode.lyf.aop.aop3.TimeAdvice"></bean>
 
     <bean id="someService" class = "org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="someServiceTarget"></property>
-        <property name="proxyInterfaces" value="com.soecode.lyf.aop3.ISomeService"></property>
+        <property name="proxyInterfaces" value="com.soecode.lyf.aop.aop3.ISomeService"></property>
         <property name="interceptorNames">
             <list>
                 <value>logAdvice</value>

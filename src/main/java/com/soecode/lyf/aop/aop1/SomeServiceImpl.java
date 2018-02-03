@@ -1,6 +1,7 @@
-package com.soecode.lyf.aop3;
+package com.soecode.lyf.aop.aop1;
 
-public class SomeServiceImpl implements ISomeService{
+public class SomeServiceImpl implements  ISomeService{
+
     @Override
     public void doOther() {
         System.out.println("SomeServiceImpl.doOther()");

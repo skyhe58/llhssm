@@ -1,4 +1,4 @@
-package com.soecode.lyf.aop1;
+package com.soecode.lyf.aop.aop1;
 
 //业务接口/代理接口
 public interface ISomeService {

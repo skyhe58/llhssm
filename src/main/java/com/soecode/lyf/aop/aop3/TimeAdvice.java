@@ -1,4 +1,4 @@
-package com.soecode.lyf.aop3;
+package com.soecode.lyf.aop.aop3;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 //环绕通知
 public class TimeAdvice implements MethodInterceptor {
 
+    @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Object target=invocation.getThis();
         Method method=invocation.getMethod();
@@ -24,11 +25,11 @@ public class TimeAdvice implements MethodInterceptor {
 
             end=System.currentTimeMillis();
             System.out.println("结束");
-            System.out.println(method.getName()+" "+(end-start));
+            System.out.println("环绕----"+method.getName()+" "+(end-start)+"S");
         } catch (Exception e) {
             end=System.currentTimeMillis();
             System.out.println("出错");
-            System.out.println(method.getName()+" "+(end-start));
+            System.out.println("环绕----"+method.getName()+" "+(end-start)+"S");
             throw e;
         }
 

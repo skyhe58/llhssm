@@ -1,4 +1,4 @@
-package com.soecode.lyf.aop2;
+package com.soecode.lyf.aop.aop2;
 
 public class SomeServiceImpl implements ISomeService{
     @Override

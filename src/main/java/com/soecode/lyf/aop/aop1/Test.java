@@ -1,4 +1,4 @@
-package com.soecode.lyf.aop1;
+package com.soecode.lyf.aop.aop1;
 
 //静态代理
 public class Test {
