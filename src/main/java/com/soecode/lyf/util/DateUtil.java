@@ -1,4 +1,4 @@
-package com.soecode.lyf.test.utilTest;
+package com.soecode.lyf.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
