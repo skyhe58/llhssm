@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("com.soecode.lyf.testDemo")
+@ComponentScan("com.soecode.lyf.testDemo.Listener")
 public class ConfigTest {
 
 }
