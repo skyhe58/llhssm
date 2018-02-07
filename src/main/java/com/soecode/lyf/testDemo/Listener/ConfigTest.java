@@ -1,4 +1,4 @@
-package com.soecode.lyf.springTest5;
+package com.soecode.lyf.testDemo.Listener;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan("com.soecode.lyf.springTest5")
+@ComponentScan("com.soecode.lyf.testDemo")
 public class ConfigTest {
 
 }

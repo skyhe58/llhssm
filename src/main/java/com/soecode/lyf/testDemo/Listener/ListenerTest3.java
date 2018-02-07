@@ -1,4 +1,4 @@
-package com.soecode.lyf.springTest5;
+package com.soecode.lyf.testDemo.Listener;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;

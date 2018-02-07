@@ -1,4 +1,4 @@
-package com.soecode.lyf.Test;
+package com.soecode.lyf.test;
 
 /**
  * Created by llh on 2018-02-06 16:22
