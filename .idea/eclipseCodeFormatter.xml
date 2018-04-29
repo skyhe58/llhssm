@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatterProjectSettings">
+    <option name="projectSpecificProfile">
+      <ProjectSpecificProfile>
+        <option name="formatter" value="ECLIPSE" />
+        <option name="importOrderConfigFilePath" value="D:/Program Files/JetBrains/code formatter/example.importorder" />
+        <option name="importOrderFromFile" value="true" />
+        <option name="pathToConfigFileJava" value="D:/Program Files/JetBrains/code formatter/formatter.xml" />
+        <option name="selectedJavaProfile" value="mine" />
+      </ProjectSpecificProfile>
+    </option>
+  </component>
+</project>

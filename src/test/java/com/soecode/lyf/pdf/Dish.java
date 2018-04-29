@@ -1,0 +1,56 @@
+package com.soecode.lyf.pdf;
+
+import java.util.List;
+
+/**
+ * @author fly
+ * Created on 2018/1/12.
+ */
+public class Dish {
+
+	private final String name;
+	private final boolean vegetarian;
+	private final int calories;
+	private final Type type;
+	private List list;
+
+	public List getList() {
+		return list;
+	}
+
+	public void setList(List list) {
+		this.list = list;
+	}
+
+	public Dish(String name, boolean vegetarian, int calories, Type type) {
+		this.name = name;
+		this.vegetarian = vegetarian;
+		this.calories = calories;
+		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public boolean isVegetarian() {
+		return vegetarian;
+	}
+
+	public int getCalories() {
+		return calories;
+	}
+
+	public Type getType() {
+		return type;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public enum Type { MEAT, FISH, OTHER }
+
+
+}
