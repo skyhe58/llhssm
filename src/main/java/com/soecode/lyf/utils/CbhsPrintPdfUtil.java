@@ -1,23 +1,34 @@
 //package com.soecode.lyf.utils;
 //
+//import com.atc.daizhang.beans.jxc.ChCbjzb;
+//import com.atc.daizhang.beans.jxc.ChCh;
+//import com.atc.daizhang.beans.jxc.ChDjView;
+//import com.atc.daizhang.beans.jxc.ChDjmx;
+//import com.atc.daizhang.beans.jxc.ChHz;
+//import com.atc.daizhang.beans.jxc.ChLlscView;
+//import com.atc.daizhang.framework.common.utils.DateUtils;
+//import com.atc.daizhang.framework.common.utils.StringUtil;
+//import com.atc.daizhang.framework.common.utils.StringUtils;
+//import com.itextpdf.text.BaseColor;
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.Element;
+//import com.itextpdf.text.Font;
+//import com.itextpdf.text.PageSize;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.BaseFont;
+//import com.itextpdf.text.pdf.PdfContentByte;
+//import com.itextpdf.text.pdf.PdfPCell;
+//import com.itextpdf.text.pdf.PdfPTable;
+//import com.itextpdf.text.pdf.PdfWriter;
+//
 //import java.io.File;
 //import java.io.FileOutputStream;
 //import java.math.BigDecimal;
 //import java.util.Arrays;
 //import java.util.List;
 //
-//import com.atc.daizhang.beans.jxc.*;
-//import com.atc.daizhang.framework.common.utils.DateUtils;
-//import com.atc.daizhang.framework.common.utils.StringUtil;
-//import com.atc.daizhang.framework.common.utils.StringUtils;
-//import com.itextpdf.text.*;
-//import com.itextpdf.text.pdf.BaseFont;
-//import com.itextpdf.text.pdf.PdfPCell;
-//import com.itextpdf.text.pdf.PdfPTable;
-//import com.itextpdf.text.pdf.PdfWriter;
-//
 ///**
-// * Created by llh on 2018-04-27
+// * Created by llh on 2018-04-28
 // */
 //
 //public class CbhsPrintPdfUtil {
@@ -37,60 +48,38 @@
 //        Document document = new Document();
 //        //设置A4
 //        document.setPageSize(PageSize.A4);
+//        Float pageWidth = PageSize.A4.getWidth();
 //        PdfWriter writer = PdfWriter.getInstance(document, fos);
 //        writer.setViewerPreferences(PdfWriter.PageModeUseThumbs);
 //        document.setMargins(30, 30, 30, 30);
 //        document.open();
 //
-//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+//        //支持中文
+//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
+//                BaseFont.NOT_EMBEDDED);
 //
-//        //        List<Dish> menu = Arrays.asList(
-//        //                new Dish("pork", false, 800, Dish.Type.MEAT),
-//        //                new Dish("french fries", true, 530, Dish.Type.OTHER),
-//        //                new Dish("salmon", false, 450, Dish.Type.FISH)
-//        //        );
-//
-//        List<String> headerList = Arrays.asList(new String[] { "品名", "规格型号", "计量单位", "数量", "单价", "金额" });
-//        //        List<String> headerList = Arrays.asList(new String[]{"品名", "规格型号", "计量单位"});
-//
-//        //        for (int i = 0; i < headerList.size(); i++) {
-//        ////            PdfPCell pdfCellHeader = new PdfPCell();
-//        ////            Paragraph  = new Paragraph(headerList.get(i), getPdfChineseFont());
-//        ////            pdfCellHeader.setPhrase(paragraphHeader);
-//        ////            //横向合并单元格
-//        //////          pdfCellHeader.setRowspan(2);
-//        ////            pdfCellHeader.setColspan(2);
-//        ////            tableHeader.addCell(pdfCellHeader);
-//        //            tableContent.addCell(createCell(headerList.get(i), 14, bfChinese, null, null, null));
-//        //        }
-//
-//        Font fontChinese = new Font(bfChinese, 20, Font.NORMAL);
+//        List<String> headerList = Arrays.asList(new String[]{"品名", "规格型号", "计量单位", "数量", "单价", "金额"});
 //
 //        PdfPTable tableHeader = new PdfPTable(3);
-//        //标题
-//        //        String content = "出库单";
-//        //        Paragraph pagragraph = new Paragraph(content, fontChinese);
-//        //        PdfPCell cell = new PdfPCell(pagragraph);
-//        ////        cell.setBorder(0);
-//        //        cell.setHorizontalAlignment(Paragraph.ALIGN_CENTER);
 //        tableHeader.setWidthPercentage(100);
-//        //        tableHeader.addCell(cell);
+//
 //        tableHeader.addCell(createCell("", 20, bfChinese, null, null, Paragraph.ALIGN_CENTER, null, 0));
 //        tableHeader.addCell(createCell("出库单", 20, bfChinese, null, null, Paragraph.ALIGN_CENTER, null, 0));
-//        tableHeader.addCell(createCell("附件数", 8, bfChinese, null, null, Paragraph.ALIGN_RIGHT, null, 0));
+//        tableHeader.addCell(createCell("", 8, bfChinese, null, null, Paragraph.ALIGN_RIGHT, null, 0));
 //
-//        PdfPTable tableHeaderDate = new PdfPTable(3);
+//        PdfPTable tableHeaderDate = new PdfPTable(2);
 //        tableHeaderDate.setWidthPercentage(100);
-//        tableHeaderDate.addCell(createCell("", 15, bfChinese, null, null, Paragraph.ALIGN_CENTER, null, 0));
-//        tableHeaderDate.addCell(createCell(kjnd + "年" + kjqj + "月" + "\n", 15, bfChinese, null, null, Paragraph.ALIGN_CENTER, null, 0));
-//        tableHeaderDate.addCell(createCell("凭证号" + "\n", 8, bfChinese, null, Paragraph.ALIGN_RIGHT, null, 0));
+//        String rq = DateUtils.format(DateUtils.getLastDayOfMonth(kjnd,kjqj));
+//        tableHeaderDate.addCell(createCell("供应商:", 15, bfChinese, null, null, Paragraph.ALIGN_LEFT, null, 0));
+//        tableHeaderDate.addCell(createCell("日期  : "+ rq + "\n", 14, bfChinese, null, null, Paragraph.ALIGN_RIGHT, null, 0));
 //
-//        BigDecimal slHj = BigDecimal.ZERO;
-//        BigDecimal jeHj = BigDecimal.ZERO;
+//
 //        /**设置内容*/
 //        for (int i = 0; i < djList.size(); i++) {
+//            BigDecimal slHj = BigDecimal.ZERO;
+//            BigDecimal jeHj = BigDecimal.ZERO;
 //            //fixme
-//            //        for (int i = 0; i < menu.size(); i++) {
+////        for (int i = 0; i < menu.size(); i++) {
 //
 //            PdfPTable tableContent = new PdfPTable(6);
 //            //设置宽度
@@ -99,30 +88,24 @@
 //
 //            //表头
 //            for (int k = 0; k < headerList.size(); k++) {
-//                tableContent.addCell(createCell(headerList.get(k), 16, bfChinese, null, null, null, null));
+//                tableContent.addCell(createCell(headerList.get(k), 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
 //            }
 //
 //            List<ChDjmx> chDjViewList = djList.get(i).getChDjmxList();
-//            //            fixme
-//            //            Dish bean = menu.get(i);
-//            //            tableContent.addCell(createCell(bean.getName(), 14, bfChinese, null, null, null));
-//            //            tableContent.addCell(createCell(bean.isVegetarian() + "", 14, bfChinese, null, null, null));
-//            //            tableContent.addCell(createCell(bean.getCalories() + "", 14, bfChinese, null, null, null));
 //
 //            int rows = chDjViewList.size() > 6 ? chDjViewList.size() : 6;
 //            for (int j = 0; j < rows; j++) {
 //                if (j >= chDjViewList.size()) {
 //                    for (int col = 0; col < 6; col++) {
-//                        tableContent.addCell(createCell(" ", 14, bfChinese, null, null, null, null));
+//                        tableContent.addCell(createCell(" ", 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
 //                    }
 //                    continue;
 //                }
 //
 //                ChDjmx bean = chDjViewList.get(j);
-//                //            "品名", "规格型号", "计量单位", "数量", "单价", "金额"
+//                //"品名", "规格型号", "计量单位", "数量", "单价", "金额"
 //                String chmc = null == bean.getkChmc() ? "" : bean.getkChmc();
 //                String ggxh = null == bean.getkGgxh() ? "" : bean.getkGgxh();
-//                //                String ggxh = null == djList.get(i).getkDjbm() ? "" : djList.get(i).getkDjbm();//fixme test编号
 //                String jldw = null == bean.getkJldw() ? "" : bean.getkJldw();
 //                BigDecimal sl = null == bean.getkSl() ? BigDecimal.ZERO : bean.getkSl().setScale(0, BigDecimal.ROUND_HALF_UP);
 //                String dj = null == bean.getkDj() ? "" : bean.getkDj().toPlainString();
@@ -140,17 +123,15 @@
 //
 //            }
 //            //合计
-//            tableContent.addCell(createCell("合计" + "\n", 14, bfChinese, 3, null, Paragraph.ALIGN_CENTER, null, null));
-//            tableContent.addCell(createCell(slHj + "\n", 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
-//            tableContent.addCell(createCell("——" + "\n", 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
+//            tableContent.addCell(createCell("合计" + "\n", 14, bfChinese, 5, null, Paragraph.ALIGN_CENTER, null, null));
 //            tableContent.addCell(createCell(jeHj + "\n", 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
 //
 //            //底边
 //            PdfPTable tableFoot = new PdfPTable(3);
 //            tableFoot.setWidthPercentage(100);
-//            tableFoot.addCell(createCell("核算单位" + "\n", 10, bfChinese, null, null, Paragraph.ALIGN_LEFT, null, 0));
-//            tableFoot.addCell(createCell("审核" + "\n", 8, bfChinese, null, Paragraph.ALIGN_LEFT, null, 0));
-//            tableFoot.addCell(createCell("制单" + "\n", 8, bfChinese, null, Paragraph.ALIGN_RIGHT, null, 0));
+//            tableFoot.addCell(createCell("单位名称:"+qymc + "\n", 10, bfChinese, null, null, Paragraph.ALIGN_LEFT, null, 0));
+//            tableFoot.addCell(createCell("经办人:" + "\n", 8, bfChinese, null, Paragraph.ALIGN_CENTER, null, 0));
+//            tableFoot.addCell(createCell("送货人:" + "\n", 8, bfChinese, null, Paragraph.ALIGN_LEFT, null, 0));
 //
 //            PdfPCell ctableHeader = new PdfPCell();
 //            ctableHeader.setBorder(0);
@@ -175,11 +156,30 @@
 //            table.addCell(cHeaderDate);
 //            table.addCell(cContent);
 //            table.addCell(cFoot);
-//            // 设置表格上面空白宽度
-//            table.setSpacingBefore(30f);
+//
+//            //设置每页打印两个父表格内容（账单），达到两个就新建一页
+//            if (i >= 2 && (i % 2 == 0)) {
+//                document.newPage(); //新建一页
+//            }
+////            table.setSpacingAfter(60f);
+//
+//            table.setTotalWidth(pageWidth - 60);
+//            if (i % 2 == 0) {
+//                //-得到层
+//                PdfContentByte tContent = writer.getDirectContent();
+//                //-写入绝对位置
+//                table.writeSelectedRows(0, -1, 0, -1, 30, 782, tContent);
+//            } else {
+//                //-得到层
+//                PdfContentByte tContent = writer.getDirectContent();
+//                //-写入绝对位置
+//                table.writeSelectedRows(0, 11, 0, -1, 30, 401, tContent);
+//            }
+//            System.out.println("table--总宽度--" + table.getTotalWidth());
+//            System.out.println("Page--总高度--" + document.getPageSize().toString());
 //
 //            //pdf文档中加入table
-//            document.add(table);
+////            document.add(table);
 //
 //        }
 //        document.close();
@@ -187,19 +187,20 @@
 //    }
 //
 //    //fixme 临时
-//    private static PdfPCell createCell(String content, int fontsize, BaseFont font, Integer colspan, Integer rowspan, Integer align,
-//            BaseColor borderColor, Integer border) {
+//    private static PdfPCell createCell(String content, int fontsize, BaseFont font, Integer colspan, Integer rowspan, Integer align, BaseColor borderColor, Integer border) {
 //        Paragraph pagragraph = new Paragraph(content, new Font(font, fontsize, Font.NORMAL));
 //        PdfPCell cell = new PdfPCell(pagragraph);
-//        //        cell.setNoWrap(true);//单元格是否自动换行
-//        //        cell.setFixedHeight(20);
-//        cell.setVerticalAlignment(Element.ALIGN_MIDDLE); // 上中下，Element对象   设置垂直位置
+////        cell.setNoWrap(true);//单元格是否自动换行
+//        cell.setFixedHeight(30);
+//        // 上中下，Element对象   设置垂直位置
+//        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 //
 //        if (null != border) {
 //            cell.setBorder(border);
 //        }
 //        if (align != null) {
-//            cell.setHorizontalAlignment(align); //设置水平位置
+//            //设置水平位置
+//            cell.setHorizontalAlignment(align);
 //        }
 //        if (colspan != null && colspan > 1) {
 //            cell.setColspan(colspan);
@@ -210,23 +211,23 @@
 //        if (borderColor != null) {
 //            cell.setBorderColor(borderColor);
 //        }
-//        //        if (bgColor != null) {
-//        //            cell.setBackgroundColor(bgColor);
-//        //        }
+////        if (bgColor != null) {
+////            cell.setBackgroundColor(bgColor);
+////        }
 //        return cell;
 //    }
 //
-//    //    /**
-//    //     * 设置字体
-//    //     * @return
-//    //     * @throws Exception
-//    //     */
-//    //    public static Font getPdfChineseFont() throws Exception {
-//    //        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
-//    //                BaseFont.NOT_EMBEDDED);
-//    //        Font fontChinese = new Font(bfChinese, 12, Font.NORMAL);
-//    //        return fontChinese;
-//    //    }
+////    /**
+////     * 设置字体
+////     * @return
+////     * @throws Exception
+////     */
+////    public static Font getPdfChineseFont() throws Exception {
+////        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
+////                BaseFont.NOT_EMBEDDED);
+////        Font fontChinese = new Font(bfChinese, 12, Font.NORMAL);
+////        return fontChinese;
+////    }
 //
 //    /**
 //     * @param content     内容
@@ -237,19 +238,20 @@
 //     * @param borderColor 边框颜色
 //     * @return
 //     */
-//    private static PdfPCell createCell(String content, int fontsize, BaseFont font, Integer colspan, Integer align, BaseColor borderColor,
-//            Integer border) {
+//    private static PdfPCell createCell(String content, int fontsize, BaseFont font, Integer colspan, Integer align, BaseColor borderColor, Integer border) {
 //        Paragraph pagragraph = new Paragraph(content, new Font(font, fontsize, Font.NORMAL));
 //        PdfPCell cell = new PdfPCell(pagragraph);
-//        //        cell.setNoWrap(true);//单元格是否自动换行
-//        //        cell.setFixedHeight(20);
-//        cell.setVerticalAlignment(Element.ALIGN_MIDDLE); // 上中下，Element对象   设置垂直位置
+////        cell.setNoWrap(true);//单元格是否自动换行
+//        cell.setFixedHeight(30);
+//        // 上中下，Element对象   设置垂直位置
+//        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 //
 //        if (null != border) {
 //            cell.setBorder(border);
 //        }
 //        if (align != null) {
-//            cell.setHorizontalAlignment(align); //设置水平位置
+//            //设置水平位置
+//            cell.setHorizontalAlignment(align);
 //        }
 //        if (colspan != null && colspan > 1) {
 //            cell.setColspan(colspan);
@@ -257,9 +259,9 @@
 //        if (borderColor != null) {
 //            cell.setBorderColor(borderColor);
 //        }
-//        //        if (bgColor != null) {
-//        //            cell.setBackgroundColor(bgColor);
-//        //        }
+////        if (bgColor != null) {
+////            cell.setBackgroundColor(bgColor);
+////        }
 //        return cell;
 //    }
 //
@@ -284,12 +286,15 @@
 //        document.setMargins(30, 30, 30, 30);
 //        document.open();
 //
-//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+//
+//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
+//                BaseFont.NOT_EMBEDDED);
+//
 //
 //        Font fontChinese = new Font(bfChinese, 20, Font.NORMAL);
 //        PdfPTable tableHeader = new PdfPTable(1);
 //
-//        List<String> headerList = Arrays.asList(new String[] { "日期", "存货名称", "规格型号", "单位", "类别", "数量", "单价", "金额" });
+//        List<String> headerList = Arrays.asList(new String[]{"日期", "存货名称", "规格型号", "单位", "类别", "数量", "单价", "金额"});
 //
 //        PdfPTable table = new PdfPTable(1);
 //        table.setWidthPercentage(100);
@@ -302,7 +307,8 @@
 //        cell.setHorizontalAlignment(Paragraph.ALIGN_CENTER);
 //        tableHeader.addCell(cell);
 //
-//        PdfPTable tableContent = new PdfPTable(new float[] { 1.5f, 4, 1, 1f, 4, 2, 2, 2 });
+//
+//        PdfPTable tableContent = new PdfPTable(new float[]{1.5f, 4, 1, 1f, 4, 2, 2, 2});
 //        //设置宽度
 //        tableContent.setWidthPercentage(100);
 //        tableContent.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -387,7 +393,9 @@
 //        document.setMargins(30, 30, 30, 30);
 //        document.open();
 //
-//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+//
+//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
+//                BaseFont.NOT_EMBEDDED);
 //        Font fontChinese = new Font(bfChinese, 20, Font.NORMAL);
 //
 //        PdfPTable table = new PdfPTable(1);
@@ -396,31 +404,20 @@
 //        PdfPTable tableHeader = new PdfPTable(1);
 //        PdfPTable tableHeaderDate = new PdfPTable(1);
 //
-//        List<String> headerList = Arrays
-//                .asList(new String[] { "名称", "规格型号", "单位", "类别", "数量", "销售收入", "成本单价", "成本", "直接材料", "直接人工", "制造费用", "其他费用" });
+//        List<String> headerList = Arrays.asList(new String[]{"名称", "规格型号", "单位", "类别", "数量", "销售收入", "成本单价", "成本", "直接材料", "直接人工", "制造费用", "其他费用"});
+//
 //
 //        //标题
 //        String content = qymc + "生产成本分摊表";
-//        //        Paragraph pagragraph = new Paragraph(content, fontChinese);
-//        //        PdfPCell cell = new PdfPCell(pagragraph);
-//        //        cell.setBorder(0);
-//        //        cell.setHorizontalAlignment(Paragraph.ALIGN_CENTER);
-//        //        tableHeader.addCell(cell);
+//
 //        tableHeader.addCell(createCell(content + "\n", 18, bfChinese, null, Paragraph.ALIGN_CENTER, null, 0));
 //
-//        //        String date = kjnd+"年"+kjqj+"月";
-//        //        Paragraph pagragraphDate = new Paragraph(date, fontChinese);
-//        //        PdfPCell cellDate = new PdfPCell(pagragraphDate);
-//        //        cellDate.setBorder(0);
-//        //        cellDate.setHorizontalAlignment(Paragraph.ALIGN_CENTER);
-//        //        tableHeaderDate.addCell(cellDate);
-//
 //        tableHeaderDate.addCell(createCell(kjnd + "年" + kjqj + "月" + "\n", 15, bfChinese, null, Paragraph.ALIGN_CENTER, null, 0));
+//
 //
 //        PdfPTable tableContent = new PdfPTable(12);
 //        //设置宽度
 //        tableContent.setWidthPercentage(100);
-//        //        tableContent.setHorizontalAlignment(Element.ALIGN_CENTER);
 //        //表头
 //        for (int k = 0; k < headerList.size(); k++) {
 //            tableContent.addCell(createCell(headerList.get(k), 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
@@ -439,7 +436,7 @@
 //        for (int i = 0; i < list.size() - 1; i++) {
 //            ChCh bean = list.get(i);
 //
-//            //          "名称", "规格型号", "单位", "类别", "数量", "销售收入","成本单价","成本","直接材料","直接人工","制造费用", "其他费用"
+//            //"名称", "规格型号", "单位", "类别", "数量", "销售收入","成本单价","成本","直接材料","直接人工","制造费用", "其他费用"
 //            String mc = StringUtils.isEmpty(bean.getkChmc()) ? "" : bean.getkChmc();
 //            String ggxh = StringUtils.isEmpty(bean.getkGgxh()) ? "" : bean.getkGgxh();
 //            String dw = StringUtils.isEmpty(bean.getkJldw()) ? "" : bean.getkJldw();
@@ -531,8 +528,9 @@
 //        document.setMargins(30, 30, 30, 30);
 //        document.open();
 //
-//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
-//        Font fontChinese = new Font(bfChinese, 20, Font.NORMAL);
+//
+//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
+//                BaseFont.NOT_EMBEDDED);
 //
 //        PdfPTable table = new PdfPTable(1);
 //        table.setWidthPercentage(100);
@@ -540,30 +538,23 @@
 //        PdfPTable tableHeader = new PdfPTable(1);
 //        PdfPTable tableHeaderDate = new PdfPTable(1);
 //
-//        List<String> headerList = Arrays.asList(new String[] { "存货名称", "规格型号", "单位", "类别", "数量", "单价", "金额" });
+//        List<String> headerList = Arrays.asList(new String[]{"存货名称", "规格型号", "单位", "类别", "数量", "单价", "金额"});
+//
 //
 //        //标题
 //        String content = qymc + "领用汇总表";
-//        //        Paragraph pagragraph = new Paragraph(content, fontChinese);
-//        //        PdfPCell cell = new PdfPCell(pagragraph);
-//        //        cell.setBorder(0);
-//        //        cell.setHorizontalAlignment(Paragraph.ALIGN_CENTER);
-//        //        tableHeader.addCell(cell);
+//
 //        tableHeader.addCell(createCell(content + "\n", 18, bfChinese, null, Paragraph.ALIGN_CENTER, null, 0));
 //
-//        //        String date = kjnd+"年"+kjqj+"月";
-//        //        Paragraph pagragraphDate = new Paragraph(date, fontChinese);
-//        //        PdfPCell cellDate = new PdfPCell(pagragraphDate);
-//        //        cellDate.setBorder(0);
-//        //        cellDate.setHorizontalAlignment(Paragraph.ALIGN_CENTER);
-//        //        tableHeaderDate.addCell(cellDate);
+//
 //
 //        tableHeaderDate.addCell(createCell(kjnd + "年" + kjqj + "月" + "\n", 15, bfChinese, null, Paragraph.ALIGN_CENTER, null, 0));
+//
 //
 //        PdfPTable tableContent = new PdfPTable(7);
 //        //设置宽度
 //        tableContent.setWidthPercentage(100);
-//        //        tableContent.setHorizontalAlignment(Element.ALIGN_CENTER);
+////        tableContent.setHorizontalAlignment(Element.ALIGN_CENTER);
 //        //表头
 //        for (int k = 0; k < headerList.size(); k++) {
 //            tableContent.addCell(createCell(headerList.get(k), 14, bfChinese, null, Paragraph.ALIGN_CENTER, null, null));
@@ -576,7 +567,7 @@
 //        for (int i = 0; i < list.size(); i++) {
 //
 //            ChLlscView bean = list.get(i);
-//            //          "存货名称", "规格型号", "单位", "类别", "数量", "单价","金额"
+//            //"存货名称", "规格型号", "单位", "类别", "数量", "单价","金额"
 //            String mc = StringUtils.isEmpty(bean.getkChmc()) ? "" : bean.getkChmc();
 //            String ggxh = StringUtils.isEmpty(bean.getkGgxh()) ? "" : bean.getkGgxh();
 //            String dw = StringUtils.isEmpty(bean.getkJldw()) ? "" : bean.getkJldw();
@@ -648,7 +639,9 @@
 //        document.setMargins(30, 30, 30, 30);
 //        document.open();
 //
-//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+//
+//        BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H",
+//                BaseFont.NOT_EMBEDDED);
 //        Font fontChinese = new Font(bfChinese, 20, Font.NORMAL);
 //
 //        PdfPTable table = new PdfPTable(1);
@@ -663,15 +656,13 @@
 //
 //        tableHeaderDate.addCell(createCell(kjnd + "年" + kjqj + "月" + "\n", 15, bfChinese, null, Paragraph.ALIGN_CENTER, null, 0));
 //
-//        //        List<String> firstHeaderList = Arrays.asList(new String[]{"存货名称", "规格型号", "单位", "类别", "期初库存", "本期入库"});
-//        //        List<String> secondHeaderList = Arrays.asList(new String[]{"期初数量", "期初单价", "期初金额", "本期数量", "本期金额"});
 //
-//        // 跨行跨列表格
-//        PdfPTable tableContent = new PdfPTable(16); // 16列表格
+////        List<String> firstHeaderList = Arrays.asList(new String[]{"存货名称", "规格型号", "单位", "类别", "期初库存", "本期入库"});
+////        List<String> secondHeaderList = Arrays.asList(new String[]{"期初数量", "期初单价", "期初金额", "本期数量", "本期金额"});
+//
+//        PdfPTable tableContent = new PdfPTable(16);
 //        //设置宽度
 //        tableContent.setWidthPercentage(100);
-//
-//        //        PdfPCell cell; // 单元格
 //
 //        tableContent.addCell(createCell("存货名称", 10, bfChinese, null, 2, Paragraph.ALIGN_CENTER, null, null));
 //        tableContent.addCell(createCell("规格型号", 10, bfChinese, null, 2, Paragraph.ALIGN_CENTER, null, null));
@@ -701,79 +692,80 @@
 //        tableContent.addCell(createCell("单价", 10, bfChinese, null, null, Paragraph.ALIGN_CENTER, null, null));
 //        tableContent.addCell(createCell("金额", 10, bfChinese, null, null, Paragraph.ALIGN_CENTER, null, null));
 //
-//        //        cell = new PdfPCell(new Paragraph("存货名称", fontChinese));
-//        //        cell.setRowspan(2);// 跨2行
-//        //        tableContent.addCell(cell);
-//        //
-//        //        cell = new PdfPCell(new Paragraph("规格型号", fontChinese));
-//        //        cell.setRowspan(2);// 跨2行
-//        //        tableContent.addCell(cell);
-//        //
-//        //        cell = new PdfPCell(new Paragraph("单位", fontChinese));
-//        //        cell.setRowspan(2);// 跨2行
-//        //        tableContent.addCell(cell);
-//        //
-//        //        cell = new PdfPCell(new Paragraph("规格型号", fontChinese));
-//        //        cell.setRowspan(2);// 跨2行
-//        //        tableContent.addCell(cell);
-//        //
-//        //
-//        //
-//        //        cell = new PdfPCell(new Paragraph("期初库存", fontChinese));
-//        //        cell.setColspan(3);// 跨3列
-//        //        tableContent.addCell(cell);
-//        //        cell = new PdfPCell(new Paragraph("本期入库", fontChinese));
-//        //        cell.setColspan(2);// 跨3列
-//        //        tableContent.addCell(cell);
-//        //        cell = new PdfPCell(new Paragraph("暂估入库", fontChinese));
-//        //        cell.setColspan(2);// 跨3列
-//        //        tableContent.addCell(cell);
-//        //        cell = new PdfPCell(new Paragraph("本期出库", fontChinese));
-//        //        cell.setColspan(2);// 跨3列
-//        //        tableContent.addCell(cell);
-//        //        cell = new PdfPCell(new Paragraph("期末库存", fontChinese));
-//        //        cell.setColspan(3);// 跨3列
-//        //        tableContent.addCell(cell);
-//        //
-//        //
-//        //        tableContent.addCell("数量");
-//        //        tableContent.addCell("单价");
-//        //        tableContent.addCell("金额");
-//        //
-//        //        tableContent.addCell("数量");
-//        //        tableContent.addCell("金额");
-//        //
-//        //        tableContent.addCell("数量");
-//        //        tableContent.addCell("金额");
-//        //
-//        //        tableContent.addCell("数量");
-//        //        tableContent.addCell("金额");
-//        //
-//        //        tableContent.addCell("数量");
-//        //        tableContent.addCell("单价");
-//        //        tableContent.addCell("金额");
+////        cell = new PdfPCell(new Paragraph("存货名称", fontChinese));
+////        cell.setRowspan(2);// 跨2行
+////        tableContent.addCell(cell);
+////
+////        cell = new PdfPCell(new Paragraph("规格型号", fontChinese));
+////        cell.setRowspan(2);// 跨2行
+////        tableContent.addCell(cell);
+////
+////        cell = new PdfPCell(new Paragraph("单位", fontChinese));
+////        cell.setRowspan(2);// 跨2行
+////        tableContent.addCell(cell);
+////
+////        cell = new PdfPCell(new Paragraph("规格型号", fontChinese));
+////        cell.setRowspan(2);// 跨2行
+////        tableContent.addCell(cell);
+////
+////
+////
+////        cell = new PdfPCell(new Paragraph("期初库存", fontChinese));
+////        cell.setColspan(3);// 跨3列
+////        tableContent.addCell(cell);
+////        cell = new PdfPCell(new Paragraph("本期入库", fontChinese));
+////        cell.setColspan(2);// 跨3列
+////        tableContent.addCell(cell);
+////        cell = new PdfPCell(new Paragraph("暂估入库", fontChinese));
+////        cell.setColspan(2);// 跨3列
+////        tableContent.addCell(cell);
+////        cell = new PdfPCell(new Paragraph("本期出库", fontChinese));
+////        cell.setColspan(2);// 跨3列
+////        tableContent.addCell(cell);
+////        cell = new PdfPCell(new Paragraph("期末库存", fontChinese));
+////        cell.setColspan(3);// 跨3列
+////        tableContent.addCell(cell);
+////
+////
+////        tableContent.addCell("数量");
+////        tableContent.addCell("单价");
+////        tableContent.addCell("金额");
+////
+////        tableContent.addCell("数量");
+////        tableContent.addCell("金额");
+////
+////        tableContent.addCell("数量");
+////        tableContent.addCell("金额");
+////
+////        tableContent.addCell("数量");
+////        tableContent.addCell("金额");
+////
+////        tableContent.addCell("数量");
+////        tableContent.addCell("单价");
+////        tableContent.addCell("金额");
 //
-//        //        PdfPTable tableContent = new PdfPTable(10);
-//        //        //设置宽度
-//        //        tableContent.setWidthPercentage(100);
-//        //        tableContent.setHorizontalAlignment(Element.ALIGN_CENTER);
+//
+////        PdfPTable tableContent = new PdfPTable(10);
+////        //设置宽度
+////        tableContent.setWidthPercentage(100);
+////        tableContent.setHorizontalAlignment(Element.ALIGN_CENTER);
 //
 //        //表头
 //        //第一行表头
-//        //        tableContent.addCell(createCell("存货名称", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("规格型号", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("单位", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("类别", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("期初库存", 14, bfChinese, 3,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("本期入库", 14, bfChinese, 3,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("期初数量", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("期初单价", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("期初金额", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("本期数量", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        tableContent.addCell(createCell("本期金额", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
-//        //        for (int k = 0; k < headerList.size(); k++) {
-//        //            tableContent.addCell(createCell(headerList.get(k), 14, bfChinese, null,Paragraph.ALIGN_CENTER , null, null));
-//        //        }
+////        tableContent.addCell(createCell("存货名称", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("规格型号", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("单位", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("类别", 14, bfChinese, null,2,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("期初库存", 14, bfChinese, 3,null,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("本期入库", 14, bfChinese, 3,null,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("期初数量", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("期初单价", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("期初金额", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("本期数量", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
+////        tableContent.addCell(createCell("本期金额", 14, bfChinese, null,null,Paragraph.ALIGN_CENTER , null, null));
+////        for (int k = 0; k < headerList.size(); k++) {
+////            tableContent.addCell(createCell(headerList.get(k), 14, bfChinese, null,Paragraph.ALIGN_CENTER , null, null));
+////        }
 //
 //        BigDecimal qcrkSlHj = BigDecimal.ZERO;
 //        BigDecimal qcrkJeHj = BigDecimal.ZERO;
@@ -895,5 +887,6 @@
 //        document.close();
 //
 //    }
+//
 //
 //}
