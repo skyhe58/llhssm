@@ -29,7 +29,7 @@ public class testRedis {
     /**
      * redis存储字符串
      */
-//    @Test
+    @Test
     public void testString() {
         //-----添加数据----------
         jedis.set("name","xinxin");//向key-->name中放入了value-->xinxin
@@ -38,8 +38,8 @@ public class testRedis {
         jedis.append("name", " is my lover"); //拼接
         System.out.println("---2---"+jedis.get("name"));
 
-        jedis.del("name");  //删除某个键
-        System.out.println("---3---"+jedis.get("name"));
+//        jedis.del("name");  //删除某个键
+//        System.out.println("---3---"+jedis.get("name"));
         //设置多个键值对
         jedis.mset("name","liuling","age","23","qq","476777XXX");
         jedis.incr("age"); //进行加1操作
@@ -50,7 +50,7 @@ public class testRedis {
     /**
      * redis操作Map
      */
-    @Test
+//    @Test
     public void testMap() {
         //-----添加数据----------
         Map<String, String> map = new HashMap<String, String>();
@@ -124,7 +124,8 @@ public class testRedis {
     public void test() throws InterruptedException {
         //jedis 排序
         //注意，此处的rpush和lpush是List的操作。是一个双向链表（但从表现来看的）
-        jedis.del("a");//先清除数据，再加入数据进行测试
+        //先清除数据，再加入数据进行测试
+        jedis.del("a");
         jedis.rpush("a", "1");
         jedis.lpush("a","6");
         jedis.lpush("a","3");
@@ -139,4 +140,6 @@ public class testRedis {
 //        RedisUtil.getJedis().set("newname", "中文测试");
 //        System.out.println(RedisUtil.getJedis().get("newname"));
 //    }
+
+
 }

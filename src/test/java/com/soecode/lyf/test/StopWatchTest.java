@@ -1,9 +1,9 @@
-package com.soecode.lyf;
+package com.soecode.lyf.test;
 
 import org.springframework.util.StopWatch;
 
 
-public class TestStopWatch {
+public class StopWatchTest {
     private void test() throws InterruptedException {
         StopWatch sw = new StopWatch();
 
@@ -28,7 +28,7 @@ public class TestStopWatch {
 
 
     public static void main(String []argv) throws InterruptedException {
-        TestStopWatch testStopWatch = new TestStopWatch();
+        StopWatchTest testStopWatch = new StopWatchTest();
         testStopWatch.test();
     }
 }

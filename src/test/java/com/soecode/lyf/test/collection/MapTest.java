@@ -1,4 +1,4 @@
-package com.soecode.lyf.test.map;
+package com.soecode.lyf.test.collection;
 
 import org.apache.commons.collections.MapUtils;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by llh on 2018-01-10 11:40
  */
-public class mapTest {
+public class MapTest {
     public static void main(String[] args) {
         System.out.println(convert());
     }

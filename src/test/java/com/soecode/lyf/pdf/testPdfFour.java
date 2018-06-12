@@ -252,7 +252,7 @@ public class testPdfFour {
     private static PdfPCell createCell(String content, int fontsize, BaseFont font, Integer colspan, Integer align, BaseColor borderColor) {
         Paragraph pagragraph = new Paragraph(content, new Font(font, fontsize));
         PdfPCell cell = new PdfPCell(pagragraph);
-        cell.setFixedHeight(30);
+        cell.setFixedHeight(25);
         cell.setNoWrap(true);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE); // 上中下，Element对象
         if (align != null)
