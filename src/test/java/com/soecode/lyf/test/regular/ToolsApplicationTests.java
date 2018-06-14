@@ -2,6 +2,8 @@ package com.soecode.lyf.test.regular;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,5 +32,15 @@ public class ToolsApplicationTests {
         // 成对去掉0
 //        String t = str.replaceAll("(00){1,}$", "%");
         System.out.println("str="+str);
+    }
+
+
+    @org.junit.Test
+    public void Stringtest(){
+        String str = "*树木*林业产品*杨木";
+        String[] arrChmc = str.split("[*]");
+        List<String> list = Arrays.asList(arrChmc);
+        str = str.replaceAll("([\\s\\S]*)"+list.get(1)+"(\\*)","");
+        System.out.println("cutStr="+str);
     }
 }
