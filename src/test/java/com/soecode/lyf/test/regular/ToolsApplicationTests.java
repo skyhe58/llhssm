@@ -20,14 +20,15 @@ public class ToolsApplicationTests {
         }
 
     }
-
+    /**去掉末尾0，当小数点后面全0时保留2位0*/
     @Test
     public void testStripTrailingZeros(){
         String str = "00v0001000022000002000000000000";
-        String t = str.replaceAll("0+$", "");
+        str = str.replaceAll("0+$", "");
 
+        str = str.replaceAll("([.]|[0-9])$", ".00");
         // 成对去掉0
 //        String t = str.replaceAll("(00){1,}$", "%");
-        System.out.println("t="+t);
+        System.out.println("str="+str);
     }
 }
