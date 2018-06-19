@@ -37,10 +37,10 @@ public class ToolsApplicationTests {
 
     @org.junit.Test
     public void Stringtest(){
-        String str = "*树木*林业产品*杨木";
+        String str = "*树木*树木*杨木";
         String[] arrChmc = str.split("[*]");
         List<String> list = Arrays.asList(arrChmc);
-        str = str.replaceAll("([\\s\\S]*)"+list.get(1)+"(\\*)","");
+        str = str.replaceFirst("(\\*)"+list.get(1)+"(\\*)","");
         System.out.println("cutStr="+str);
     }
 }
