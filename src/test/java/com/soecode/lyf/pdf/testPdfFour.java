@@ -77,7 +77,7 @@ public class testPdfFour {
 
         PdfPTable table1 = new PdfPTable(1);
 
-        String content = "出库单";
+        String content = "凭证表单";
         Paragraph pagragraph = new Paragraph(content, fontChinese);  //Paragraph : a Phrase with extra properties and a newline
        /* //设置段落属性 （未测试）
         pagragraph.setAlignment(Element.ALIGN_JUSTIFIED);// 对齐方式
