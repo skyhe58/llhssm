@@ -1,2 +1,9 @@
 # llhssm
-1.打印是工具类，要根据业务中具体内容做更改
+
+-- aop
+-- interceptor
+-- Listener监听 
+-- solveXhylTest类 循环依赖问题
+-- 打印打印,excel导出
+-- factory工厂设计模式
+-- LineFeed类 英文语句断行不断单词 2018-06-25
