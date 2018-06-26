@@ -1,0 +1,19 @@
+1.将id为userid的输入框的设为可见和不可见，请分别使用JQuery语法和JS语法。
+
+
+2.表单序列化的作用
+
+3.请说明ssh方式和ssm方式的区别，使用ssm方式实现一个人员表的增删改查需要那几步，最少需要建几个文件。
+
+4.对于SQL语句执行效率的分析怎么做？请分别使用mysql，sqlserver，oracle 数据库任意两个进行分析。
+
+5.在使用struts+spring+mybatis 方式下，如何保证事物的实现。
+
+6.请说明下spring中的注解@Servic，@Transactional，@Autowired等三个注解的作用。
+
+7.反射   有一个类BizMold.java，有多个属性，例如String moldid，String ，moldname，注意不确定是二个属性。现在有一个该类的
+实例对象bizMold，这二个属性值分别为“1”，“模具1”，现在要求使用反射的方式变一段方法，将改实例对象中的属性值赋值给
+HashMap型变量 myhash，最终使得变量myhash有二个键值对，一个是moldid，一个是moldname。
+
+8.使用ssm方式实现一个人员表的增删改查，人员表名为sys_user 有二个字段，第一个字段id整形，第二个字段name字符型，请写出
+涉及到的各文件中的主要代码。
