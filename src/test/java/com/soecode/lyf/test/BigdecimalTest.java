@@ -49,6 +49,14 @@ public class BigdecimalTest {
 
     }
 
+    /**
+	 * effective java 第48条解释：如果需要精确的答案，请避免使用float和double
+	 * float和double类型主要是为了科学计算和工程计算而设计，他们执行二进制浮点运算，这是为了在广泛的数值范围上提供较为精确的快速近和计算而精心设计的，
+	 * 然而，他们并没有提供完全精确的结果，所以不应该被用于精确的结果的场合
+	 *
+	 * 从effective java中，明确的说了，float和double是不精确的运算，他们只是为了广泛的运算保证有一个相近的值
+	 * 为什么要使用二进制计算double，float和double他们执行的二进制浮点运算，因为使用二进制计算效率要高，适用于日常运算，而二进制也能给我提供一个相对准确的值
+	 * */
     @Test
     public void testBigDecimal02(){
         System.out.println("1--- "+new BigDecimal(7/100d).toPlainString());  // 结果: 0.070000000000000006661338147750939242541790008544921875
