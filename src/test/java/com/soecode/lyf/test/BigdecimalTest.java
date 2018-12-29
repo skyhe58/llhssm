@@ -34,7 +34,7 @@ public class BigdecimalTest {
         BigDecimal d2 = new BigDecimal("8.70000041").setScale(8,RoundingMode.HALF_UP);
         System.out.println("d1: " + d1);
         System.out.println("d2: " + d2);
-        //当小数达到8位，且只有末尾有数字（少于等于2个非零数字）时会内部转换科学计数，需要将类型转换成String
+        //当小数达到8位，且只有末尾有非零数字（少于等于2个非零数字）时会内部转换科学计数，需要将类型转换成String
         BigDecimal d = d1.subtract(d2);
         System.out.println("d: " + d);
 
@@ -47,6 +47,20 @@ public class BigdecimalTest {
 
 //        System.out.println("====" + BigDecimal.valueOf(-41, 8));
 
+    }
+
+    @Test
+    public void testBigDecimal02(){
+        System.out.println("1--- "+new BigDecimal(7/100d).toPlainString());  // 结果: 0.070000000000000006661338147750939242541790008544921875
+        System.out.println("2--- "+new BigDecimal(String.valueOf(7/100d)).toPlainString());//0.07
+        System.out.println("2.1--- "+new BigDecimal(String.valueOf(7/100f)).toPlainString());//0.07
+        System.out.println("3--- "+BigDecimal.valueOf(7/100d));//0.07
+        System.out.println("3.1--- "+BigDecimal.valueOf(7/100f));//0.07000000029802322
+        System.out.println("4--- "+new BigDecimal(Double.toString(7/100d)));//0.07
+        System.out.println("4.1--- "+new BigDecimal(Double.toString(7/100f)));//0.07000000029802322
+        System.out.println("4.2--- "+new BigDecimal(Float.toString(7/100f)));//0.07
+
+		//建议使用： new BigDecimal(String.valueOf(7/100d)).toPlainString());
     }
 
     /**
