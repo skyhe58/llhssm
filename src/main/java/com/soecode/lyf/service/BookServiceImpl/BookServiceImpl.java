@@ -1,8 +1,8 @@
 package com.soecode.lyf.service.BookServiceImpl;
 
-import com.soecode.lyf.dao.AppointmentDao;
-import com.soecode.lyf.dao.BookDao;
-import com.soecode.lyf.dto.AppointExecution;
+import com.soecode.lyf.model.dao.AppointmentDao;
+import com.soecode.lyf.model.dao.BookDao;
+import com.soecode.lyf.model.dto.AppointExecution;
 import com.soecode.lyf.entity.Appointment;
 import com.soecode.lyf.entity.Book;
 import com.soecode.lyf.enums.AppointStateEnum;

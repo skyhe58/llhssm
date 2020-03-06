@@ -1,7 +1,7 @@
 package com.soecode.lyf.web;
 
-import com.soecode.lyf.dto.AppointExecution;
-import com.soecode.lyf.dto.Result;
+import com.soecode.lyf.model.dto.AppointExecution;
+import com.soecode.lyf.model.dto.Result;
 import com.soecode.lyf.entity.Book;
 import com.soecode.lyf.enums.AppointStateEnum;
 import com.soecode.lyf.exception.NoNumberException;

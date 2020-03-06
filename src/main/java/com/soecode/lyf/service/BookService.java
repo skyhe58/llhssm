@@ -4,7 +4,7 @@ package com.soecode.lyf.service;
  * Created by llh on 2018-01-22 16:38
  */
 
-import com.soecode.lyf.dto.AppointExecution;
+import com.soecode.lyf.model.dto.AppointExecution;
 import com.soecode.lyf.entity.Book;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.soecode.lyf.dao;
+package com.soecode.lyf.model.dao;
 
 import com.soecode.lyf.entity.Book;
 import org.apache.ibatis.annotations.Param;

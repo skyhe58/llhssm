@@ -1,6 +1,6 @@
 package com.soecode.lyf.service.BookServiceImpl;
 
-import com.soecode.lyf.dao.UserDao;
+import com.soecode.lyf.model.dao.UserDao;
 import com.soecode.lyf.entity.User;
 import com.soecode.lyf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

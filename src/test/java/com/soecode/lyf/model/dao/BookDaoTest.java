@@ -1,4 +1,4 @@
-package com.soecode.lyf.dao;
+package com.soecode.lyf.model.dao;
 
 import java.util.List;
 import org.junit.Test;

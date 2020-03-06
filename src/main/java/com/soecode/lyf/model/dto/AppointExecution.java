@@ -1,4 +1,4 @@
-package com.soecode.lyf.dto;
+package com.soecode.lyf.model.dto;
 
 /**
  * Created by llh on 2018-01-22 16:12

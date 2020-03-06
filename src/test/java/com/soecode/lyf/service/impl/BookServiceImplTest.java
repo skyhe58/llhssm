@@ -1,7 +1,7 @@
 package com.soecode.lyf.service.impl;
 
 import com.soecode.lyf.BaseTest;
-import com.soecode.lyf.dto.AppointExecution;
+import com.soecode.lyf.model.dto.AppointExecution;
 import com.soecode.lyf.service.BookService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

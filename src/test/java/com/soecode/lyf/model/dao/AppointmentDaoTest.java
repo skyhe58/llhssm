@@ -1,4 +1,4 @@
-package com.soecode.lyf.dao;
+package com.soecode.lyf.model.dao;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
